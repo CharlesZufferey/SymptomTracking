@@ -55,8 +55,8 @@ completeS["trackable_value_icon"].value_counts()
 completeS["GoodWeather"] = [1 if (i == "partly-cloudy-day" or i == "partly-cloudy-night" or 
          i == "clear-day") else 0 for i in completeS["trackable_value_icon"]]
 #%% creation of a column with average temp (although not great as its just a mean)
-meanC = completeS.loc[: , "trackable_value_mintemp":"trackable_value_maxtemp"]
-completeS["AvgTemp"] = meanC.mean()
+meanS = completeS.loc[: , "trackable_value_mintemp":"trackable_value_maxtemp"]
+completeS["AvgTemp"] = meanS.mean()
 
 #%%
 
