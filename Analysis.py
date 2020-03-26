@@ -9,7 +9,8 @@ import pandas as pd
 import numpy as np
 #%%
 data = pd.read_csv("documents/projects/SymptomTracking/fd-export.csv")##,delimiter="\t" )
-
+# csv doc available here: https://www.kaggle.com/flaredown/flaredown-autoimmune-symptom-tracker
+# under data sources
 #%%
 a = data["user_id"].drop_duplicates()
 
