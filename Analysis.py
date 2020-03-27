@@ -55,9 +55,14 @@ completeS = pd.merge(c,fullweather,on=["user_id","checkin_date"])
 completeS["trackable_value_icon"].value_counts()
 completeS["GoodWeather"] = [1 if (i == "partly-cloudy-day" or i == "partly-cloudy-night" or 
          i == "clear-day") else 0 for i in completeS["trackable_value_icon"]]
+completeC["trackable_value_icon"].value_counts()
+completeC["GoodWeather"] = [1 if (i == "partly-cloudy-day" or i == "partly-cloudy-night" or 
+         i == "clear-day") else 0 for i in completeC["trackable_value_icon"]]
 #%% creation of a column with average temp (although not great as its just a mean)
 meanS = completeS.loc[: , "trackable_value_mintemp":"trackable_value_maxtemp"]
 completeS["AvgTemp"] = meanS.mean()
+meanC = completeC.loc[: , "trackable_value_mintemp":"trackable_value_maxtemp"]
+completeC["AvgTemp"] = meanC.mean()
 
 #%%
 
