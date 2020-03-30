@@ -68,4 +68,4 @@ completeC["AvgTemp"] = meanC.mean()
 
 
 
-c = data[data["user_id"]=="QEVuQwEA+1a8gyc3D+F/bQfKWtMBSw=="]
+example = data[data["user_id"]=="QEVuQwEA+1a8gyc3D+F/bQfKWtMBSw=="]
