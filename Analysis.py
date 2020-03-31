@@ -19,13 +19,13 @@ b = data[["user_id","checkin_date","trackable_type","trackable_name","trackable_
 b = b[b["trackable_type"]=="Condition"]
 b = b[b["trackable_value"].astype(int)>2]
 b["countconditions"] = b.groupby(["trackable_name"])["trackable_name"].transform("count")
-b = b[b["countconditions"]>=500]
+b = b[b["countconditions"]>=450]
 #%% filtering for highly reported symptoms only
 c = data[["user_id","checkin_date","trackable_type","trackable_name","trackable_value"]]
 c = c[c["trackable_type"]=="Symptom"]
 #c = c[c["trackable_value"].astype(int)>2]
 c["countsymptoms"] = c.groupby(["trackable_name"])["trackable_name"].transform("count")
-c = c[c["countsymptoms"]>=500]
+c = c[c["countsymptoms"]>=450]
 
 #%% creation of multiple df with weather info
 d = data[["user_id","checkin_date","trackable_type","trackable_name","trackable_value"]]
@@ -65,7 +65,4 @@ meanC = completeC.loc[: , "trackable_value_mintemp":"trackable_value_maxtemp"]
 completeC["AvgTemp"] = meanC.mean()
 
 #%%
-
-
-
 example = data[data["user_id"]=="QEVuQwEA+1a8gyc3D+F/bQfKWtMBSw=="]
