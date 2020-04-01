@@ -60,9 +60,11 @@ completeC["GoodWeather"] = [1 if (i == "partly-cloudy-day" or i == "partly-cloud
          i == "clear-day") else 0 for i in completeC["trackable_value_icon"]]
 #%% creation of a column with average temp (although not great as its just a mean)
 meanS = completeS.loc[: , "trackable_value_mintemp":"trackable_value_maxtemp"]
-completeS["AvgTemp"] = meanS.mean()
+completeS["AvgTemp"] = meanS.astype("float32").mean(axis = 1)
 meanC = completeC.loc[: , "trackable_value_mintemp":"trackable_value_maxtemp"]
-completeC["AvgTemp"] = meanC.mean()
-
+completeC["AvgTemp"] = meanC.astype("float32").mean(axis = 1)
 #%%
-example = data[data["user_id"]=="QEVuQwEA+1a8gyc3D+F/bQfKWtMBSw=="]
+completeS = completeS.drop(["trackable_value_icon","trackable_value_mintemp","trackable_value_maxtemp"],axis = 1)
+completeC = completeC.drop(["trackable_value_icon","trackable_value_mintemp","trackable_value_maxtemp"],axis = 1)
+#%%
+print(meanS.dtypes)
