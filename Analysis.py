@@ -67,4 +67,3 @@ completeC["AvgTemp"] = meanC.astype("float32").mean(axis = 1)
 completeS = completeS.drop(["trackable_value_icon","trackable_value_mintemp","trackable_value_maxtemp"],axis = 1)
 completeC = completeC.drop(["trackable_value_icon","trackable_value_mintemp","trackable_value_maxtemp"],axis = 1)
 #%%
-print(meanS.dtypes)
