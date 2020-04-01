@@ -67,3 +67,13 @@ completeC["AvgTemp"] = meanC.astype("float32").mean(axis = 1)
 completeS = completeS.drop(["trackable_value_icon","trackable_value_mintemp","trackable_value_maxtemp"],axis = 1)
 completeC = completeC.drop(["trackable_value_icon","trackable_value_mintemp","trackable_value_maxtemp"],axis = 1)
 #%%
+completeSymptomAnalysis = completeS[["trackable_name","trackable_value","trackable_value_precip",
+                                    "trackable_value_pressure","trackable_value_humidity",
+                                    "GoodWeather","AvgTemp"]]
+completeSymptomAnalysis[["trackable_value","trackable_value_precip",
+                                    "trackable_value_pressure","trackable_value_humidity",
+                                    "GoodWeather","AvgTemp"]] = completeSymptomAnalysis[["trackable_value","trackable_value_precip",
+                                    "trackable_value_pressure","trackable_value_humidity",
+                                    "GoodWeather","AvgTemp"]].apply(pd.to_numeric)
+completeSymptomAnalysis = completeSymptomAnalysis.groupby(["trackable_name",
+                                                           "trackable_value"])["trackable_value_precip","trackable_value_pressure","trackable_value_humidity","GoodWeather","AvgTemp"].mean()
