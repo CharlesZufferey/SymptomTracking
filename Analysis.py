@@ -86,3 +86,6 @@ completeConditionAnalysis[["trackable_value","trackable_value_precip",
                                     "trackable_value_pressure","trackable_value_humidity",
                                     "GoodWeather","AvgTemp"]].apply(pd.to_numeric)
 completeConditionAnalysis = completeConditionAnalysis.groupby(["trackable_name","trackable_value"])["trackable_value_precip","trackable_value_pressure","trackable_value_humidity","GoodWeather","AvgTemp"].mean()
+#%%
+completeSymptomAnalysis = completeSymptomAnalysis.reset_index().set_index(["trackable_name"])
+completeConditionAnalysis = completeConditionAnalysis.reset_index().set_index(["trackable_name"])
