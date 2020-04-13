@@ -17,7 +17,7 @@ a = data["user_id"].drop_duplicates()
 #%% filtering for highly reported conditions only
 b = data[["user_id","checkin_date","trackable_type","trackable_name","trackable_value"]]
 b = b[b["trackable_type"]=="Condition"]
-b = b[b["trackable_value"].astype(int)>2]
+#b = b[b["trackable_value"].astype(int)>2]
 b["countconditions"] = b.groupby(["trackable_name"])["trackable_name"].transform("count")
 b = b[b["countconditions"]>=450]
 #%% filtering for highly reported symptoms only
@@ -89,3 +89,9 @@ completeConditionAnalysis = completeConditionAnalysis.groupby(["trackable_name",
 #%%
 completeSymptomAnalysis = completeSymptomAnalysis.reset_index().set_index(["trackable_name"])
 completeConditionAnalysis = completeConditionAnalysis.reset_index().set_index(["trackable_name"])
+#%% Group by severity of symptoms to see tendencies
+SevSAnalysis = completeSymptomAnalysis.reset_index().drop(["trackable_name"], axis = 1)
+SevSAnalysis = SevSAnalysis.groupby(["trackable_value"])["trackable_value_precip","trackable_value_pressure","trackable_value_humidity","GoodWeather","AvgTemp"].mean()
+#%%
+SevCAnalysis = completeConditionAnalysis.reset_index().drop(["trackable_name"], axis = 1)
+SevCAnalysis = SevCAnalysis.groupby(["trackable_value"])["trackable_value_precip","trackable_value_pressure","trackable_value_humidity","GoodWeather","AvgTemp"].mean()
