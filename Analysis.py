@@ -95,3 +95,4 @@ SevSAnalysis = SevSAnalysis.groupby(["trackable_value"])["trackable_value_precip
 #%%
 SevCAnalysis = completeConditionAnalysis.reset_index().drop(["trackable_name"], axis = 1)
 SevCAnalysis = SevCAnalysis.groupby(["trackable_value"])["trackable_value_precip","trackable_value_pressure","trackable_value_humidity","GoodWeather","AvgTemp"].mean()
+#%%
